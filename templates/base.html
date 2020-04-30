@@ -1,0 +1,26 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        {% block header %}
+        <ul>
+            {% if request.user.is_authenticated %}
+                <h2>Hello, {{ request.user|capfirst }}!</h2>
+                {% block logged_in_nav %} 
+                {% endblock %}
+                <li><a href= "{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href= "{% url 'login' %}">Login</a></li>
+                <li><a href= "{% url 'user_registration'%}">Register Account</a></li>
+            {% endif %}    
+        </ul>
+        {% endblock header %}
+        <!-- if you import this template you can only override this part -->
+        {% block content %}
+
+        {% endblock content %}
+    </body>
+</html>
